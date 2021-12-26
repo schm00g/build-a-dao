@@ -86,6 +86,18 @@ const App = () => {
       });
   }, [hasClaimedNFT, proposals, address]);
 
+  if (error && error.name === "UnsupportedChainIdError") {
+    return (
+      <div className="unsupported-network">
+        <h2>Please connect to Rinkeby</h2>
+        <p>
+          This dapp only works on the Rinkeby network, please switch networks
+          in your connected wallet.
+        </p>
+      </div>
+    );
+  }
+
   // A fancy function to shorten someones wallet address, no need to show the whole thing. 
   const shortenAddress = (str) => {
     return str.substring(0, 6) + "..." + str.substring(str.length - 4);
